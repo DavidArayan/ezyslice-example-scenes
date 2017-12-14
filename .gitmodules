@@ -1,0 +1,3 @@
+[submodule "EzySlice-Examples/Assets/EzySlice"]
+	path = EzySlice-Examples/Assets/EzySlice
+	url = https://github.com/DavidArayan/EzySlice.git
