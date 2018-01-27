@@ -31,17 +31,13 @@ public class TriangulationDebug : MonoBehaviour {
 			return;
 		}
 
-		Vector3[] verts;
-		Vector2[] uvs;
-		int[] indices;
+		List<Triangle> tri;
 
 		// perform triangulation
-		if (Triangulator.MonotoneChain(pt, Vector3.up, out verts, out indices, out uvs)) {
+		if (Triangulator.MonotoneChain(pt, Vector3.up, out tri)) {
 			
-			for (int i = 0; i < indices.Length; i+=3) {
-				Triangle newTri = new Triangle(verts[indices[i]], verts[indices[i+1]], verts[indices[i+2]]);
-
-				newTri.OnDebugDraw(Color.yellow);
+			for (int i = 0; i < tri.Count; i++) {
+				tri[i].OnDebugDraw(Color.yellow);
 			}
 		}
 	}
