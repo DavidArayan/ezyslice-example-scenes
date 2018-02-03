@@ -1,2 +1,4 @@
 EzySlice-Examples/Library/
 EzySlice-Examples/Temp/
+
+*.csproj
