@@ -12,11 +12,12 @@ public class PlaneUsageExampleEditor : Editor {
 	public GameObject source;
 	public Material crossMat;
 	public bool recursiveSlice;
+    public bool threadedAPI;
 
 	public override void OnInspectorGUI() {
 		PlaneUsageExample plane = (PlaneUsageExample)target;
 
-		source = (GameObject) EditorGUILayout.ObjectField(source, typeof(GameObject), true);
+        source = (GameObject)EditorGUILayout.ObjectField(source, typeof(GameObject), true);
 
 		if (source == null) {
 			EditorGUILayout.LabelField("Add a GameObject to Slice.");
@@ -39,17 +40,33 @@ public class PlaneUsageExampleEditor : Editor {
 		crossMat = (Material) EditorGUILayout.ObjectField(crossMat, typeof(Material), true);
 		recursiveSlice = (bool) EditorGUILayout.Toggle("Recursive Slice", recursiveSlice);
 
+        if (!recursiveSlice) {
+            threadedAPI = (bool)EditorGUILayout.Toggle("Threaded (Experimental)", threadedAPI);
+        }
+
 		if (GUILayout.Button("Cut Object")) {
 			// only slice the parent object
 			if (!recursiveSlice) {
-				SlicedHull hull = plane.SliceObject(source);
+                if (threadedAPI) {
+                    SlicedHull hull = plane.SliceObjectThreaded(source);
 
-				if (hull != null) {
-					hull.CreateLowerHull(source, crossMat);
-					hull.CreateUpperHull(source, crossMat);
+                    if (hull != null) {
+                        hull.CreateLowerHull(source, crossMat);
+                        hull.CreateUpperHull(source, crossMat);
 
-					source.SetActive(false);
-				}
+                        source.SetActive(false);
+                    }
+                }
+                else {
+                    SlicedHull hull = plane.SliceObject(source);
+
+                    if (hull != null) {
+                        hull.CreateLowerHull(source, crossMat);
+                        hull.CreateUpperHull(source, crossMat);
+
+                        source.SetActive(false);
+                    }
+                }
 			}
 			else {
 				// in here we slice both the parent and all child objects

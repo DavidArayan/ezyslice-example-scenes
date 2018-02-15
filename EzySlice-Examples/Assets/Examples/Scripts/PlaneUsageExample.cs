@@ -27,6 +27,17 @@ public class PlaneUsageExample : MonoBehaviour {
 	}
 
     /**
+     * EXPERIMENTAL!!
+     */
+    public SlicedHull SliceObjectThreaded(GameObject obj) {
+        EzySlice.Plane cuttingPlane = ComputePlaneAgainst(obj);
+
+        // finally, slice the object and return the results. SlicedHull will have all the mesh
+        // details which the application can use to do whatever it wants to do
+        return Slicer.SliceThreaded(obj, cuttingPlane);
+    }
+
+    /**
      * Computes a Plane in regards to the reference frame of the provided GameObject
      * which can be used to cut the provided Object
      */
