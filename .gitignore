@@ -6,3 +6,5 @@ EzySlice-Examples/Temp/
 *.sln
 
 *.userprefs
+
+\.DS_Store

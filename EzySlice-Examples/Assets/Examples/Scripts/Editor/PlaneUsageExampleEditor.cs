@@ -42,7 +42,7 @@ public class PlaneUsageExampleEditor : Editor {
 		if (GUILayout.Button("Cut Object")) {
 			// only slice the parent object
 			if (!recursiveSlice) {
-				SlicedHull hull = plane.SliceObject(source);
+                SlicedHull hull = plane.SliceObject(source, crossMat);
 
 				if (hull != null) {
 					hull.CreateLowerHull(source, crossMat);
@@ -53,7 +53,7 @@ public class PlaneUsageExampleEditor : Editor {
 			}
 			else {
 				// in here we slice both the parent and all child objects
-				SliceObjectRecursive(plane, source);
+                SliceObjectRecursive(plane, source, crossMat);
 
 				source.SetActive(false);
 			}
@@ -65,10 +65,10 @@ public class PlaneUsageExampleEditor : Editor {
 	 * Returns a list of SlicedHull objects which represents the cuts for the object
 	 * and all its children (if any)
 	 */
-	public GameObject[] SliceObjectRecursive(PlaneUsageExample plane, GameObject obj) {
+	public GameObject[] SliceObjectRecursive(PlaneUsageExample plane, GameObject obj, Material crossSectionMaterial) {
 
 		// finally slice the requested object and return
-		SlicedHull finalHull = plane.SliceObject(obj);
+        SlicedHull finalHull = plane.SliceObject(obj, crossSectionMaterial);
 
 		if (finalHull != null) {
 			GameObject lowerParent = finalHull.CreateLowerHull(obj, crossMat);
@@ -80,7 +80,7 @@ public class PlaneUsageExampleEditor : Editor {
 
 						// if the child has chilren, we need to recurse deeper
 						if (child.childCount > 0) {
-							GameObject[] children = SliceObjectRecursive(plane, child.gameObject);
+                            GameObject[] children = SliceObjectRecursive(plane, child.gameObject, crossSectionMaterial);
 
 							if (children != null) {
 								// add the lower hull of the child if available
@@ -96,7 +96,7 @@ public class PlaneUsageExampleEditor : Editor {
 						}
 						else {
 							// otherwise, just slice the child object
-							SlicedHull hull = plane.SliceObject(child.gameObject);
+                            SlicedHull hull = plane.SliceObject(child.gameObject, crossSectionMaterial);
 
 							if (hull != null) {
 								GameObject childLowerHull = hull.CreateLowerHull(child.gameObject, crossMat);
