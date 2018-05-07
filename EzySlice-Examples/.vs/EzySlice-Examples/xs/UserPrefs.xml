@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{9745FAF3-9490-4E38-8C99-0E01A09C024F}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Examples/Scripts/ShatterExample.cs">
+    <Files>
+      <File FileName="Assets/Examples/Scripts/RuntimeShatterExample.cs" Line="8" Column="42" />
+      <File FileName="Assets/Examples/Scripts/ShatterExample.cs" Line="45" Column="58" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.EzySlice-Examples PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

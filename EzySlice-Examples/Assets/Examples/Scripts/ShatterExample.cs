@@ -44,12 +44,6 @@ public class ShatterExample : MonoBehaviour {
     public EzySlice.Plane GetRandomPlane(Vector3 positionOffset, Vector3 scaleOffset) {
         Vector3 randomPosition = Random.insideUnitSphere;
 
-        /*
-        randomPosition.x *= scaleOffset.x;
-        randomPosition.y *= scaleOffset.y;
-        randomPosition.z *= scaleOffset.z;
-        */
-
         randomPosition += positionOffset;
 
         Vector3 randomDirection = Random.insideUnitSphere.normalized;
