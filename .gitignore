@@ -8,3 +8,9 @@ EzySlice-Examples/Temp/
 *.userprefs
 
 \.DS_Store
+
+EzySlice-Examples/obj/Debug/
+
+EzySlice-Examples/Logs/
+
+EzySlice-Examples/\.vscode/
